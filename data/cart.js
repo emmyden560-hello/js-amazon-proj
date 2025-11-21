@@ -26,14 +26,13 @@ export function addtocart(productId) {
 
 
 export function removecart(productId) {
-    const itemMatch = cart.find(item => item.productId === productId);
+    const newcart = [];
 
-    if (itemMatch) {
-        if (itemMatch.quantity > 1) {
-            itemMatch.quantity -= 1;
-        } else {
-            cart = cart.filter(item => item.productId !== productId);
+    cart.forEach((cartitem) => {
+        if (cartitem.productId !== productId) {
+            newcart.push(cartitem);
         }
-    }
-}
+    });
 
+    cart = newcart;
+}
