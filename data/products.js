@@ -2,7 +2,7 @@ export function getProduct(productId) {
   let matchingproduct;
 
   products.forEach((product) => {
-    if (product.id === productId) {
+    if (String(product.id) === String(productId)) {
       matchingproduct = product
     }
   });
@@ -352,8 +352,8 @@ export const products = [
     keywords: [
       "shoes",
       "flats",
-      "womens",
-      "footwear"
+      "womens",  
+      "footwear"    
     ]
   },
   {

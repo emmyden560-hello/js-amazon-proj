@@ -3,3 +3,4 @@ import { paymentSummary } from "./checkout/paylog.js";
 
 renderSummary();
 paymentSummary();
+

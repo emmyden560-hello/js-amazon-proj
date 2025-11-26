@@ -16,7 +16,7 @@ export function getDeliveryOption(deliveryoptionId) {
     let deliveryoption;
 
     deliveryoptions.forEach((option) => {
-        if (option.id === deliveryoptionId) {
+        if (String(option.id) === String(deliveryoptionId)) {
             deliveryoption = option;
         }
     }); 

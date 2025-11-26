@@ -13,7 +13,7 @@ export function renderSummary() {
   cart.forEach((cartitem) => {
     const productId = cartitem.productId;
 
-    const matchingproduct = getProduct(productId)
+    const matchingproduct = getProduct(productId);
 
     const deliveryoptionId = cartitem.deliveryoptionsId;
 
@@ -88,7 +88,7 @@ export function renderSummary() {
         ? `FREE`
         : `${currencyformat(deliveryoption.priceCents)} -`
 
-      const check = deliveryoption.id === cartitem.deliveryoptionId;
+      const check = deliveryoption.id === cartitem.deliveryoptionsId;
 
       html +=
         `
