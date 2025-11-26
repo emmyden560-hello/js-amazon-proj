@@ -2,7 +2,7 @@ import { cart, removecart, updatedeliveryoption } from '../../data/cart.js';
 import { products, getProduct } from '../../data/products.js'
 import { currencyformat } from '../utilities/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
-import { deliveryoptions,getDeliveryOption } from '../../data/deliveryoptions.js';
+import { deliveryoptions, getDeliveryOption } from '../../data/deliveryoptions.js';
 import { paymentSummary } from './paylog.js';
 
 export function renderSummary() {
