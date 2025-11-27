@@ -1,5 +1,5 @@
 import { cart, removecart, updatedeliveryoption } from '../../data/cart.js';
-import { products, getProduct } from '../../data/products.js'
+import { getProduct } from '../../data/products.js'
 import { currencyformat } from '../utilities/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import { deliveryoptions, getDeliveryOption } from '../../data/deliveryoptions.js';
@@ -31,7 +31,9 @@ export function renderSummary() {
 
     carthmtl +=
       `
-              <div class="cart-item-container js-cart-container-${matchingproduct.id}">
+              <div class="cart-item-container 
+              js-cart-item-container
+              js-cart-container-${matchingproduct.id}">
             <div class="delivery-date">
               Delivery date: ${datestring}
             </div>
@@ -46,14 +48,14 @@ export function renderSummary() {
                 <div class="product-price">
                   $${currencyformat(matchingproduct.priceCents)}
                 </div>
-                <div class="product-quantity">
+                <div class="product-quantity js-product-quantity-${matchingproduct.id}">
                   <span>
                     Quantity: <span class="quantity-label">${cartitem.quantity}</span>
                   </span>
                   <span class="update-quantity-link link-primary js-update">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary js-delete" data-product-id="${matchingproduct.id}">
+                  <span class="delete-quantity-link link-primary js-delete js-delete-link-${matchingproduct.id}" data-product-id="${matchingproduct.id}">
                     Delete
                   </span>
                 </div>
