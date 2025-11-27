@@ -46,7 +46,7 @@ export function renderSummary() {
                 <div class="product-name">${matchingproduct.name}
                 </div>
                 <div class="product-price">
-                  $${currencyformat(matchingproduct.priceCents)}
+                  $${matchingproduct.getPrice()}
                 </div>
                 <div class="product-quantity js-product-quantity-${matchingproduct.id}">
                   <span>
