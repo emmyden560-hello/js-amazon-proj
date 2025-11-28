@@ -1,8 +1,11 @@
 import { renderSummary } from "./checkout/order.js";
 import { paymentSummary } from "./checkout/paylog.js";
-// import "../data/cart-class.js";
+import { loadProducts } from "../data/products.js";
 import '../data/backend-practice.js';
 
-renderSummary();
-paymentSummary();
+loadProducts(() =>{
+    renderSummary();
+    paymentSummary();
+})
+
 
