@@ -20,6 +20,10 @@ class Products {
   getPrice() {
     return `$${(this.priceCents / 100).toFixed(2)}`;
   }
+
+  extraInfoHTML() {
+    return ``;
+  }
 }
 
 export function getProduct(productId) {
@@ -32,6 +36,20 @@ export function getProduct(productId) {
   });
 
   return matchingproduct;
+}
+
+class Clothing extends Products {
+  sizeChartLink;
+
+  constructor(productdata) {
+    super(productdata);
+    this.sizeChartLink = productdata.sizeChartLink;
+  }
+
+  extraInfoHTML() {
+    return `
+    <a href="${this.sizeChartLink}" target="_blank">Size Chart</a>`;
+  }
 }
 
 export const products = [{
@@ -693,5 +711,8 @@ export const products = [{
   ]
 }
 ].map((productdata) => {
+  if (productdata.type === "clothing") {
+    return new Clothing(productdata);
+  }
   return new Products(productdata);
 });
