@@ -4,25 +4,41 @@ import { loadProducts, loadProductsFetch } from "../data/products.js";
 import '../data/backend-practice.js';
 import { loadCart } from "../data/cart.js";
 
-
-Promise.all([
-    new Promise((resolve) => {
-        loadProductsFetch();
-        loadProducts(() => {
-            resolve('value1');
+async function loadPage() {
+    await loadProductsFetch();
+    await new Promise((resolve) => {
+        loadCart(() => {
+            resolve();
         });
-    }),
-     new Promise((resolve) => {
-         loadCart(() => {
-             resolve();
-         });
-     })
+    });
 
-]).then((values) => {
-    console.log(values);
     renderSummary();
     paymentSummary();
+}
+
+loadPage().then(() => {
+    console.log('page loaded');
 });
+
+
+// Promise.all([
+//     new Promise((resolve) => {
+//         loadProductsFetch();
+//         loadProducts(() => {
+//             resolve('value1');
+//         });
+//     }),
+//      new Promise((resolve) => {
+//          loadCart(() => {
+//              resolve();
+//          });
+//      })
+
+// ]).then((values) => {
+//     console.log(values);
+//     renderSummary();
+//     paymentSummary();
+// });
 
 // new Promise((resolve) => {
 //     loadProducts(() => {
