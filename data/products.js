@@ -65,8 +65,6 @@ export function loadProducts(func) {
       return new Products(productdata);
     });
 
-    console.log(products);
-
     if (typeof func === 'function') {
       func();
     }
