@@ -5,20 +5,27 @@ import '../data/backend-practice.js';
 import { loadCart } from "../data/cart.js";
 
 async function loadPage() {
-    await loadProductsFetch();
-    await new Promise((resolve) => {
-        loadCart(() => {
-            resolve();
+    try {
+        // throw 'error1';
+        await loadProductsFetch();
+
+        const value = await new Promise((resolve, reject) => {
+            loadCart(() => {
+                reject('error3')
+                // resolve('value3');
+            });
         });
-    });
+
+    } catch (error) {
+        console.log('error. please try again')
+    }
+
 
     renderSummary();
     paymentSummary();
 }
 
-loadPage().then(() => {
-    console.log('page loaded');
-});
+loadPage();
 
 
 // Promise.all([

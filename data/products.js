@@ -56,7 +56,7 @@ export let products = [];
 
 export function loadProductsFetch() {
 
-  const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
+  const promise = fetch('https://error.supersimplebackend.dev/products').then((response) => {
     return response.json()
   }).then((productdata) => {
     products = productdata.map((productdata) => {
@@ -71,14 +71,14 @@ export function loadProductsFetch() {
     if (typeof func === 'function') {
       func();
     }
-  })
+  }).catch(() => {
+    console.log('error. please try again')
+  });
 
   return promise;
 }
 
-loadProductsFetch().then(() => {
-  console.log('next step')
-});
+loadProductsFetch();
 
 export function loadProducts(func) {
   const xhr = new XMLHttpRequest();
@@ -96,9 +96,14 @@ export function loadProducts(func) {
     }
   });
 
+  xhr.addEventListener('error', (error) => {
+    console.error('Error loading products. Please try again later.');
+  });
+
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
+
 loadProducts();
 
 // const date = new Date();
