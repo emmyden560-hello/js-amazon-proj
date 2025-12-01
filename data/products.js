@@ -56,7 +56,7 @@ export let products = [];
 
 export function loadProductsFetch() {
 
-  const promise = fetch('https://error.supersimplebackend.dev/products').then((response) => {
+  const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
     return response.json()
   }).then((productdata) => {
     products = productdata.map((productdata) => {
