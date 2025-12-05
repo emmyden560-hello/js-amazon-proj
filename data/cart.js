@@ -11,10 +11,14 @@ export function loadFromStorage() {
             quantity: 2,
             deliveryoptionsId: '1'
         }, {
-            productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d", quantity: 1,
+            productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+            quantity: 1,
             deliveryoptionsId: '2'
         }];
     }
+
+    // persist normalized shape
+    savetostorage();
 }
 
 
@@ -81,6 +85,6 @@ export function loadCart(func) {
         func();
     });
 
-xhr.open('GET', 'https://supersimplebackend.dev/cart');
-xhr.send();
+    xhr.open('GET', 'https://supersimplebackend.dev/cart');
+    xhr.send();
 }

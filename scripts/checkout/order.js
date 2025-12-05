@@ -12,12 +12,15 @@ export function renderSummary() {
 
   cart.forEach((cartitem) => {
     const productId = cartitem.productId;
-
     const matchingproduct = getProduct(productId);
+
+    if (!matchingproduct) {
+      return;
+    }
 
     const deliveryoptionId = cartitem.deliveryoptionsId;
 
-    const deliveryoption = getDeliveryOption(deliveryoptionId);
+    const deliveryoption = getDeliveryOption(deliveryoptionId) || deliveryoptions[0] || { deliverydays: 0, priceCents: 0, id: '' };
 
     const today = dayjs();
     const deliverydate = today.add(

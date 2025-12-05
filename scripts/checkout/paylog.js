@@ -7,13 +7,20 @@ import { addOrders } from "../../data/orders.js";
 export function paymentSummary() {
   let productPriceCents = 0;
   let shippingPrice = 0;
+  let itemsCount = 0;
 
   cart.forEach((cartitem) => {
     const product = getProduct(cartitem.productId);
-    productPriceCents += product.priceCents * cartitem.quantity;
+    if (!product) {
+      return;
+    }
 
-    const deliveryOption = getDeliveryOption(cartitem.deliveryoptionsId);
-    shippingPrice += deliveryOption.priceCents
+    const qty = Number(cartitem.quantity) || 0;
+    itemsCount += qty;
+    productPriceCents += (Number(product.priceCents) || 0) * qty;
+
+    const deliveryOption = getDeliveryOption(cartitem.deliveryoptionsId) || { priceCents: 0 };
+    shippingPrice += Number(deliveryOption.priceCents) || 0;
   });
 
   const totalBeforeTaxCents = productPriceCents + shippingPrice;
@@ -26,7 +33,7 @@ export function paymentSummary() {
             </div>
 
             <div class="payment-summary-row">
-              <div>Items (3):</div>
+              <div>Items (${itemsCount}):</div>
               <div class="payment-summary-money">$${currencyformat(productPriceCents)}</div>
             </div>
 
